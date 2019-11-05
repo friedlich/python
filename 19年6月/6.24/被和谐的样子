@@ -1,0 +1,10 @@
+C:\Users\asus\Desktop\Python\风变Python爬虫精进\爬虫阶段练习>C:/Users/asus/AppData/Local/Programs/Python/Python36/python.exe c:/Users/asus/Desktop/Python/风变Python爬虫精进/爬虫阶段练习/6.24/饿了么参考答案.py
+请输入手机号码：19921876546
+Traceback (most recent call last):
+  File "c:/Users/asus/Desktop/Python/风变Python爬虫精进/爬虫阶段练习/6.24/饿了么参考答案.py", line 14, in <module>
+    token = session.post(url_1,headers=headers,data=data_1).json()['validate_token']
+KeyError: 'validate_token'
+
+C:\Users\asus\Desktop\Python\风变Python爬虫精进\爬虫阶段练习>C:/Users/asus/AppData/Local/Programs/Python/Python36/python.exe c:/Users/asus/Desktop/Python/风变Python爬虫精进/爬虫阶段练习/6.24/饿了么参考答案.py
+请输入手机号码：18217627836
+请输入手机验证码：

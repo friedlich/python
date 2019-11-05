@@ -1,0 +1,23 @@
+<class 'requests.cookies.RequestsCookieJar'>
+<RequestsCookieJar[<Cookie 328dab9653f517ceea1f6dfce2255032=de9c4536a3cc4dc1cca9843080f4ffda for wordpress-
+edu-3autumn.localprod.forc.work/>, <Cookie wordpress_logged_in_9927dadafec8b913479e6af0fba5e181=spiderman%7
+C1561527273%7CRuh6IEWOjTlOhwdfgqySA5489AEyzc4uiGsjbrZKKHy%7Cb30f1164112e43d816ed5b59d4040172c788b5340cffa14
+5f8018d5dcac5d3b9 for wordpress-edu-3autumn.localprod.forc.work/>, <Cookie wordpress_test_cookie=WP+Cookie+
+check for wordpress-edu-3autumn.localprod.forc.work/>, <Cookie wordpress_sec_9927dadafec8b913479e6af0fba5e1
+81=spiderman%7C1561527273%7CRuh6IEWOjTlOhwdfgqySA5489AEyzc4uiGsjbrZKKHy%7C853303c1bd4d585a0cd73d2332bc93ec7
+b93259b9845d328b835905d40a606a1 for wordpress-edu-3autumn.localprod.forc.work/wp-admin>, <Cookie wordpress_
+sec_9927dadafec8b913479e6af0fba5e181=spiderman%7C1561527273%7CRuh6IEWOjTlOhwdfgqySA5489AEyzc4uiGsjbrZKKHy%7
+C853303c1bd4d585a0cd73d2332bc93ec7b93259b9845d328b835905d40a606a1 for wordpress-edu-3autumn.localprod.forc.
+work/wp-content/plugins>]>
+
+
+{'328dab9653f517ceea1f6dfce2255032': 'de9c4536a3cc4dc1cca9843080f4ffda', 'wordpress_logged_in_9927dadafec8b9
+13479e6af0fba5e181': 'spiderman%7C1561528455%7CWNC04atFcLI45EqFW1iFAarZPEV9EzXrxiFWWbuUVMg%7C727c3cb7862d3cb
+124d65ac87793422dbaf950c35776e440fa4a5b559e697991', 'wordpress_test_cookie': 'WP+Cookie+check', 'wordpress_s
+ec_9927dadafec8b913479e6af0fba5e181': 'spiderman%7C1561528455%7CWNC04atFcLI45EqFW1iFAarZPEV9EzXrxiFWWbuUVMg%
+7C5e2cda659e19330abd9727a0b85d2a6664487388c1887827a6a856ad2f8a8577'}
+{"328dab9653f517ceea1f6dfce2255032": "de9c4536a3cc4dc1cca9843080f4ffda", "wordpress_logged_in_9927dadafec8b9
+13479e6af0fba5e181": "spiderman%7C1561528455%7CWNC04atFcLI45EqFW1iFAarZPEV9EzXrxiFWWbuUVMg%7C727c3cb7862d3cb
+124d65ac87793422dbaf950c35776e440fa4a5b559e697991", "wordpress_test_cookie": "WP+Cookie+check", "wordpress_s
+ec_9927dadafec8b913479e6af0fba5e181": "spiderman%7C1561528455%7CWNC04atFcLI45EqFW1iFAarZPEV9EzXrxiFWWbuUVMg%
+7C5e2cda659e19330abd9727a0b85d2a6664487388c1887827a6a856ad2f8a8577"}

@@ -1,0 +1,80 @@
+# <style> 
+# .book {
+# /*以下是.book的具体样式规定*/
+# float: left; /*控制元素浮动*/
+# margin: 5px; /*外边距为5像素*/
+# padding: 15px; /*内边距为15像素*/
+# width: 350px; /*宽度为350像素*/
+# height: 240px; /*高度为240像素*/
+# border: 3px solid #20b2aa; /*边框为3像素*/
+# } 
+# </style>
+
+
+<html>
+  <head>
+      <meta charset="utf-8"> 
+      <title>这个书苑不太冷3.0</title>
+      <style>
+      .book {
+      float: left;
+      margin: 5px;
+      padding: 15px;
+      width: 350px;
+      height: 240px;
+      border: 3px solid #20b2aa;
+      } 
+      </style>
+  </head>
+  
+  <body>
+      <h1 style="color:#20b2aa;">这个书苑不太冷</h1>
+      <h3>吴枫喜欢的书:</h3>
+      <a href="https://spidermen.cn">点这里看看</a>
+      <div class="book">
+          <h2>《奇点遗民》</h2>
+          <p>本书精选收录了刘宇昆的科幻佳作共22篇。《奇点遗民》融入了科幻艺术吸引人的几大元素：数字化生命、影像化记忆、人工智能、外星访客……刘宇昆的独特之处在于，他写的不是科幻探险或英雄奇幻，而是数据时代里每个人的生活和情感变化。透过这本书，我们看到的不仅是未来还有当下。
+          </p>
+      </div>
+  </body>
+</html>
+
+
+<div id="article">
+    <div id="nav">
+        <a href="#type1" class="catlog">科幻小说</a><br>
+        <a href="#type2" class="catlog">人文读物</a><br>
+        <a href="#type3" class="catlog">技术参考</a><br>
+    </div>
+    <div id="main">
+        <div class="books">
+            <h2><a name="type1">科幻小说</a></h2>
+            <a href="https://book.douban.com/subject/27077140/" class="title">《奇点遗民》</a>
+            <p class="info">本书精选收录了刘宇昆的科幻佳作共22篇。《奇点遗民》融入了科幻艺术吸引人的几大元素：数字化生命、影像化记忆、人工智能、外星访客……刘宇昆的独特之处在于，他写的不是科幻探险或英雄奇幻，而是数据时代里每个人的生活和情感变化。透过这本书，我们看到的不仅是未来还有当下。</p> 
+            <img class="img" src="./spider-men5.0_files/s29492583.jpg">
+            <br/>
+            <br/>
+            <hr size="1">
+        </div>
+        
+        <div class="books">
+            <h2><a name="type2">人文读物</a></h2>
+            <a href="https://book.douban.com/subject/26943161/" class="title">《未来简史》</a>
+            <p class="info">未来，人类将面临着三大问题：生物本身就是算法，生命是不断处理数据的过程；意识与智能的分离；拥有大数据积累的外部环境将比我们自己更了解自己。如何看待这三大问题，以及如何采取应对措施，将直接影响着人类未来的发展。</p> 
+            <img class="img" src="./spider-men5.0_files/s29287103.jpg">
+            <br/>
+            <br/>
+            <hr size="1">
+        </div>
+        
+        <div class="books">
+            <h2><a name="type3">技术参考</a></h2>
+            <a href="https://book.douban.com/subject/25779298/" class="title">《利用Python进行数据分析》</a>
+            <p class="info">本书含有大量的实践案例，你将学会如何利用各种Python库（包括NumPy、pandas、matplotlib以及IPython等）高效地解决各式各样的数据分析问题。由于作者Wes McKinney是pandas库的主要作者，所以本书也可以作为利用Python实现数据密集型应用的科学计算实践指南。本书适合刚刚接触Python的分析人员以及刚刚接触科学计算的Python程序员。</p> 
+            <img class="img" src="./spider-men5.0_files/s27275372.jpg">
+            <br/>
+            <br/>
+            <hr size="1">
+        </div>
+    </div>
+</div>

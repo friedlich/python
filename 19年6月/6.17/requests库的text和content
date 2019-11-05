@@ -1,0 +1,11 @@
+通过<title>标签我们可以看出 res.text 直接输出了汉字，而 res.content 好像是以十六进制的形式来表示汉字
+
+resp.text返回的是Unicode型的数据。
+resp.content返回的是bytes型也就是二进制的数据。
+获取文本一般使用res.text, 获取图片或文件一般使用res.content。
+
+
+text是content经过编码之后的字符串，那编码方式是什么呢？
+在返回text时requests会基于 HTTP 头部对响应的编码作出有根据的推测，但不一定准确，有可能出现乱码，
+而我们可以手动指定一种编码方式：res.encoding = '需要的编码方式'
+或让requests根据body进行猜测：res.encoding = res.apparent_encoding
