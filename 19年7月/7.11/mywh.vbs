@@ -1,0 +1,1 @@
+ CreateObject("SAPI.SpVoice").Speak "wo me you wen hua, wo zhi hui zhong tian"

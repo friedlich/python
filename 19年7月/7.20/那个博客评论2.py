@@ -1,0 +1,32 @@
+# 第二次
+import requests
+session = requests.session()
+url = 'https://wordpress-edu-3autumn.localprod.forc.work/wp-login.php'
+headers = {
+'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
+}
+data = {
+    'log':'spiderman', #用input函数填写账号和密码，这样代码更优雅，而不是直接把账号密码填上去。
+    'pwd':'crawler334566',
+    'wp-submit':'登录',
+    'redirect_to':'https://wordpress-edu-3autumn.localprod.forc.work',
+    'testcookie':'1'
+}
+session.post(url,headers=headers,data=data)
+#在创建的session下用post发起登录请求，放入参数：请求登录的网址、请求头和登录参数。
+
+url_1 = 'https://wordpress-edu-3autumn.localprod.forc.work/wp-comments-post.php'
+#把我们想要评论的文章网址赋值给url_1。
+data_1 = {
+'comment': input('请输入你想要发表的评论：'),
+'submit': '发表评论',
+'comment_post_ID': '13',
+'comment_parent': '0'
+}
+#把有关评论的参数封装成字典。
+comment = session.post(url_1,headers=headers,data=data_1)
+#在创建的session下用post发起评论请求，放入参数：文章网址，请求头和评论参数，并赋值给comment。
+print(comment)
+#打印comment
+
+

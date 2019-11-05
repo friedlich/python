@@ -1,0 +1,11 @@
+import numpy as np
+Y = np.array([[1,0,1,0,1,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1]])
+print(Y)
+print(Y.shape)
+Y_p = np.array([[1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1]])
+print(Y_p)
+print(Y_p.shape)
+print(np.abs(Y_p-Y))
+print(np.mean(np.abs(Y_p-Y)))
+print((100-np.mean(np.abs(Y_p-Y))*100))
+print('预测的准确率为：{}%'.format(100-np.mean(np.abs(Y_p-Y))*100))

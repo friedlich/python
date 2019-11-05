@@ -1,0 +1,18 @@
+输入你想查询的小说名称：大道超萌
+http://www.biquge.cm/modules/article/sou.php?searchkey=%B4%F3%B5%C0%B3%AC%C3%C8
+没有在笔趣阁找到该书
+输入1继续查询，输入0退出：大道朝天
+没有在笔趣阁找到该书
+输入1继续查询，输入0退出：1
+输入你想查询的小说名称：大道超萌
+http://www.biquge.cm/modules/article/sou.php?searchkey=%B4%F3%B5%C0%B3%AC%C3%C8
+没有在笔趣阁找到该书
+输入1继续查询，输入0退出：1
+输入你想查询的小说名称：大道朝天
+http://www.biquge.cm/modules/article/sou.php?searchkey=%B4%F3%B5%C0%B3%AF%CC%EC
+Traceback (most recent call last):
+  File "c:/Users/asus/Desktop/Python/风变Python爬虫精进/爬虫阶段练习/19年7月/7.11/重复biquge.py", line 121, in <module>
+    x = download.find_book()
+  File "c:/Users/asus/Desktop/Python/风变Python爬虫精进/爬虫阶段练习/19年7月/7.11/重复biquge.py", line 36, in find_book
+    try_tr = bs.find(class_="grid").find_all('tr')
+AttributeError: 'NoneType' object has no attribute 'find_all'

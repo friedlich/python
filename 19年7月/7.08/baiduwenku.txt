@@ -1,0 +1,826 @@
+<input type="hidden" name="v_input" value="0" />
+<input type="hidden" name="req_vip_free_doc" value="0" />
+</form>
+</div>
+<div class="mod bottom-doc-list pt20 " id="bottom-doc-list-5">
+
+<div class="hd">
+<h4>你可能喜欢</h4>
+</div>
+<div class="bd stru-recom-new">
+<div class="tagList-wrap">
+<div class="tagList tabControl" alog-group="view.strurecom.tag.total">
+<textarea id="tagList-template-5" style="display:none">
+                <%for (var i = 0, len = data.length; i < len; i++) {%>
+                    <%var className = '';%>
+                    <%if (i === 0) {%>
+                        <%className = 'current';%>
+                    <%}%>
+                    <a href="javascript:;" class="<%=className%> logSend log-xsend"
+                        title="<%=util.encodeHTML((data[i]['tag_name']))%>"
+                        data-logsend="{'send':['view','tag_link',{'from':'srs','tag_no':'<%=(i+1)%>','ply':'','doc_srs_strategy':'<%=doc_srs_strategy%>','doc_srs_tag':'<%=doc_srs_tag%>'}]}"
+                        alog-action="view.strurecom.tag.<%=i%>"
+                        data-logxsend="[1, 101465, {'index': '<%=i + 1%>', 'tagName': '<%=encodeURIComponent(data[i].tag_name)%>'}]">
+                        <%=util.cutString(data[i]['tag_name'],10,'...')%>
+                    </a>
+                <%}%>
+                </textarea>
+</div>
+</div>
+<div class="tabContent tableList data c-gray9">
+<textarea id="tableList-template-5" style="display:none">
+
+                <% for (var i = 0, len = data.length; i < len; i++) { %>
+                    <%var status = 'disabled';%>
+                    <% if (i == 0) {%>
+                        <%status = 'current';%>
+                    <%}%>
+                    <%var docList = data[i]['related_doc_infos'];%>
+                    <div class="<%=status%>">
+                        <div alog-group="view.strurecom.doc">
+                            <div class="guess-u-like">
+                            <%for (var j = 0, n = docList.length; j < n; j++) {%>
+                                <%// mark_pay_doc： 1：付费文档； 2：积分文档； 0：免费文档 %>
+
+                                <%var markPayDoc = 0;%>
+                                <% if (+docList[j].pay_price) {%>
+                                    <%var markPayDoc = 1;%>
+                                <%} else if (+docList[j].docTicket) {%>
+                                    <%var markPayDoc = 2;%>
+                                <%}%>
+                                <div class="txtL one-info-block">
+                                    <div class="image-wrap">
+                                        <a href="/view/<%=docList[j]['doc_id']%>.html"
+                                            data-mark-pay-doc="<%=markPayDoc%>"
+                                            target="_blank" class="logSend log-xsend fcClick"
+                                            data-logsend="{'send':['view','doc_link',{'from':'srs','tag_no':'<%=(i+1)%>','ply':'','doc_srs_strategy':'<%=doc_srs_strategy%>','doc_srs_tag':'<%=doc_srs_tag%>'}]}"
+                                            data-logxsend="[1,100029,{'index':'<%=j + 1%>','click_doc_id':'<%=docList[j]['doc_id']%>', 'tagName':'<%=encodeURIComponent(docList[j].title)%>'}]"
+                                            title="<%=util.encodeHTML(docList[j].title)%>">
+                                            <%if (docList[j]['cover_url']) {%>
+                                                <img src="<%=docList[j]['cover_url']%>">
+                                            <%} else if (docType[docList[j]['doc_type']].toString() === 'ppt') {%>
+                                                <img src="//wkstatic.bdimg.com/static/wkview/widget/stru_recom/image/default-image-ppt_f21179f.jpg">
+                                            <%} else {%>
+                                                <img src="//wkstatic.bdimg.com/static/wkview/widget/stru_recom/image/default-image_f16d940.jpg">
+                                            <%}%>
+                                        </a>
+                                        <b class="ic ic-type-icon ic-<%=docType[docList[j]['doc_type']].toString()%>"></b>
+                                    </div>
+                                    <div class="doc-info-box">
+                                        <div class="doc-title">
+                                            <a href="/view/<%=docList[j]['doc_id']%>.html" target="_blank" class="logSend log-xsend fcClick"
+                                                data-logsend="{'send':['view','doc_link',{'from':'srs','tag_no':'<%=(i+1)%>','ply':'','doc_srs_strategy':'<%=doc_srs_strategy%>','doc_srs_tag':'<%=doc_srs_tag%>'}]}"
+                                                data-logxsend="[1,100029,{'index':'<%=j + 1%>','click_doc_id':'<%=docList[j]['doc_id']%>', 'tagName':'<%=encodeURIComponent(docList[j].title)%>'}]"
+                                                title="<%=util.encodeHTML(docList[j].title)%>">
+                                                <%=util.cutString(docList[j].title,25,'...')%>
+                                            </a>
+                                        </div>
+                                        <div class="doc-other-info">
+                                            <%if (docList[j] && docList[j]['qualityScore']) {%>
+                                                <span class="doc-score"><%=docList[j]['qualityScore']%></span> 分
+                                            <%} else {%>
+                                                <span class="doc-score">0.0</span> 分
+                                            <%}%>
+
+                                            <%if (docList[j] && docList[j]['view_count']) {%>
+                                                <span class="doc-view-count"><%=docList[j]['view_count']%>人阅读</span>
+                                            <%} else {%>
+                                                <span class="doc-view-count">0人阅读</span>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%}%>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="list-more" colspan="4">
+                                <a href="//wenku.baidu.com/search?word=<%=data[i]['tag_name']%>&tn=SE_huins0007_nhui0007"
+                                    title="<%=data[i]['tag_name']%>"
+                                    target="_blank" class="logSend log-xsend"
+                                    data-logxsend="[1, 100180, {'tagName': '<%=encodeURIComponent(data[i].tag_name)%>'}]"
+                                    data-logsend="{'send':['view','more_link',{'from':'srs','tag_no':'<%=(i+1)%>','ply':'','doc_srs_strategy':'<%=doc_srs_strategy%>','doc_srs_tag':'<%=doc_srs_tag%>'}]}">
+                                    更多与“<span><%=data[i]['tag_name']%></span>”相关的内容&gt;&gt
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                <%}%>
+            </textarea>
+</div>
+</div>
+</div>
+<div id="doc-comment" class="doc-comment">
+<h4>
+您的评论<span class="star-act" >
+<b class="ct-star value-star ic-star-off"></b>
+<b class="ct-star value-star ic-star-off"></b>
+<b class="ct-star value-star ic-star-off"></b>
+<b class="ct-star value-star ic-star-off"></b>
+<b class="ct-star value-star ic-star-off"></b>
+</span>
+<span class="f-star" ></span>
+<span class="tip" >*感谢支持，给文档评个星吧！</span>
+</h4>
+<div class="post-comment-wrap clearfix">
+<div class="add-ct-tip">
+<div class="add-ct-wrap">
+<p style="padding:10px;">
+<textarea class="post-comment-ipt" placeholder="写点评论支持下文档贡献者~"></textarea>
+</p>
+<p class="length-tip">240</p>
+</div>
+<a class="add-new-btn post-comment-btn" href="javascript:void(0);">发布评论</a>
+<div id='captcha-wrap' style="display:none;">
+<input id='v_input' placeholder="输入验证码" name='v_input'/>
+<img id='captcha'/>
+<a class='change-captcha' href='javascript:void(0);'>换一换</a>
+<input type='hidden' id='v_code' name='v_code' />
+</div>
+<p class="tip"></p>
+</div>
+</div>
+<div class="comment-wrap">
+<h4>
+用户评价<span class="ct-num"></span>
+</h4>
+<p class="loading">评论加载中...</p>
+<ul class="comment-list hide" id="comment-list"></ul>
+</div>
+</div>
+<div id="pager"></div>
+<script type="text/template" id="comment-item-tpl">
+    <div class="ct-item-wrap">
+        <div class="clearfix ct-con-wrap">
+            <div class="ct-extra-into">
+                <p><%= create_time %></p>
+                <p>
+                    <% if ( "" == uname ) { %>
+                        <a href="javascript:void(0);" class="delete-btn">删除</a>
+                    <% } %>
+                    <a href="javascript:void(0);" class="reply-btn">回复 (<span class="ry-num">0</span>)</a>
+                </p>
+            </div>
+
+            <div class="ct-con">
+                <div class="avatar-wrap">
+                    <div>
+                        <a href="<%= url %>" target="_blank"><img class="avatar" src="<%= avatar %>" /></a>
+                    </div>
+                </div>
+                <div class="main-con">
+                    <p>
+                        <span class="ct-star" >
+                            <% var onNum = Math.ceil( star ); %>
+                            <% var offNum = 5 - onNum; %>
+                            <% for ( var i = 0; i < onNum; i++ ) { %>
+                                <b class="ic-star-score star-score-on"></b>
+                            <% } %>
+                            <% for ( var i = 0; i < offNum; i++ ) { %>
+                                <b class="ic-star-score star-score-off"></b>
+                            <% } %>
+                        </span>
+                        <a class="uname" href="<%= url %>" target="_blank"><%= tname %></a>
+
+                        <% if ( oInfo.org_name ) { %>
+                            <span class="bg-comment ic-over"></span>
+                        <% } else if ( title ) { %>
+                            <span class="bg-comment ic-ver"></span>
+                            <span class="title"><%= title %></span>
+                        <% } %>
+                    </p>
+                    <div class="ct-atc">
+                        <p><%- content %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reply-wrap">
+            <div class="bg-comment ic-arrow"></div>
+            <div class="post-reply clearfix">
+                <a class="add-new-btn post-reply-btn" href="javascript:void(0);">回复</a>
+                <input type="text" class="post-reply-ipt" />
+            </div>
+
+            <div class="info-tip clearfix">
+                <p class="error-tip"></p>
+                <p class="reply-num">共<%= reply_count %>条回复</p>
+            </div>
+
+            <ul class="reply-list">
+
+            </ul>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="comment-list-tpl">
+    <% if ( commentList.length > 0 ) { %>
+        <% _.each( commentList, function( item ) { %>
+            <li class="ct-item" data-reply-id="<%= item.reply_id %>" id="item-<%= item.reply_id %>">
+                <div class="ct-item-wrap">
+                    <div class="clearfix ct-con-wrap">
+                        <div class="ct-extra-into">
+                            <p><%= item.create_time %></p>
+                            <p>
+                                <% if ( "" == item.uname || item.is_uid_admin ) { %>
+                                    <a href="javascript:void(0);" class="delete-btn">删除</a>
+                                <% } %>
+                                <a href="javascript:void(0);" class="reply-btn">
+                                    回复 (<span class="ry-num"><%= item.reply_count %></span>)
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="ct-con">
+                            <div class="avatar-wrap">
+                                <div>
+                                    <a href="<%= item.url %>" target="_blank">
+                                        <img class="avatar" src="<%= item.avatar %>" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="main-con">
+                                <p>
+                                    <span class="ct-star" >
+                                        <% var onNum = Math.ceil( item.star ); %>
+                                        <% var offNum = 5 - onNum; %>
+                                        <% for ( var i = 0; i < onNum; i++ ) { %>
+                                            <b class="ic-star-score star-score-on"></b>
+                                        <% } %>
+                                        <% for ( var i = 0; i < offNum; i++ ) { %>
+                                            <b class="ic-star-score star-score-off"></b>
+                                        <% } %>
+                                    </span>
+                                    <a class="uname" href="<%= item.url %>" target="_blank"><%= item.tname %></a>
+
+                                    <% if ( item.oInfo.org_name ) { %>
+                                        <span class="bg-comment ic-over"></span>
+                                    <% } else if ( item.title ) { %>
+                                        <span class="bg-comment ic-ver"></span>
+                                        <span class="title"><%= item.title %></span>
+                                    <% } %>
+                                </p>
+                                <div class="ct-atc">
+                                    <p><%- item.content %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reply-wrap">
+                        <div class="bg-comment ic-arrow"></div>
+                        <div class="post-reply clearfix">
+                            <a class="add-new-btn post-reply-btn" href="javascript:void(0);">回复</a>
+                            <input type="text" class="post-reply-ipt" />
+                        </div>
+
+                        <div class="info-tip clearfix">
+                            <p class="error-tip"></p>
+                            <p class="reply-num">共<%= item.reply_count %>条回复</p>
+                        </div>
+
+                        <ul class="reply-list">
+
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        <% } ); %>
+    <% } else { %>
+        <li class="no-comment">暂无评论</li>
+    <% } %>
+</script>
+<script type="text/template" id="reply-item-tpl">
+    <div class="ry-item-wrap">
+        <p class="date">
+            <%= create_time %><br/>
+            <% if ( "" == uname ) { %>
+                <a href="javascript:void(0);" class="delete-btn delete-reply-btn">删除</a>
+            <% } %>
+        </p>
+
+        <div class="reply-info">
+            <p>
+                <a class="uname" href="<%= url %>" target="_blank"><%= tname %></a>
+
+                <% if ( oInfo.org_name ) { %>
+                    <span class="bg-comment ic-over"></span>
+                <% } else if ( title ) { %>
+                    <span class="bg-comment ic-ver"></span>
+                    <span class="title"><%= title %></span>
+                <% } %>
+            </p>
+            <div class="ct-atc">
+                <p><%- content %></p>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="reply-list-tpl">
+    <% _.each( replyList, function( item, key ) { %>
+        <li class="ry-item clearfix <% if ( key == replyList.length - 1 ) { %> last <%}%>"
+            data-reply-id="<%= item.reply_id %>" id="item-<%= item.reply_id %>"
+        >
+            <div class="ry-item-wrap">
+                <p class="date">
+                    <%= item.create_time %><br/>
+                    <% if ( "" == item.uname ) { %>
+                        <a href="javascript:void(0);" class="delete-btn delete-reply-btn">删除</a>
+                    <% } %>
+                </p>
+
+                <div class="reply-info">
+                    <p>
+                        <a class="uname" href="<%= item.url %>" target="_blank"><%= item.tname %></a>
+                        <% if ( item.oInfo.org_name ) { %>
+                            <span class="bg-comment ic-over"></span>
+                        <% } else if ( item.title ) { %>
+                            <span class="bg-comment ic-ver"></span>
+                            <span class="title"><%= item.title %></span>
+                        <% } %>
+                    </p>
+                    <div class="ct-atc">
+                        <p><%- item.content %></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    <% } ); %>
+</script>
+<div style="position: relative; margin-top: 20px;">
+<div id="ggbtm-ads" style="padding-top: 0;"></div>
+<a class="ggbtm-vip-close" style="top: 0;"></a>
+</div>
+</div>
+</div>
+<b class="bottom"><b class="bl"></b><b class="br"></b></b>
+</div>
+
+<script>
+    void function(e,t){for(var n=t.getElementsByTagName("img"),a=+new Date,i=[],o=function(){this.removeEventListener&&this.removeEventListener("load",o,!1),i.push({img:this,time:+new Date})},s=0;s< n.length;s++)!function(){var e=n[s];e.addEventListener?!e.complete&&e.addEventListener("load",o,!1):e.attachEvent&&e.attachEvent("onreadystatechange",function(){"complete"==e.readyState&&o.call(e,o)})}();alog("speed.set",{fsItems:i,fs:a})}(window,document);
+</script>
+</div>
+
+
+</div>
+</div>
+</div>
+<div id="ft">
+
+<div class="footer">
+<p>
+<span class="cr">&copy;2019&nbsp;Baidu</span>&nbsp;<span>|&nbsp;由&nbsp;百度云&nbsp;提供计算服务</span>&nbsp;|&nbsp;<a href="http://www.baidu.com/duty/" class="Bidu" target="_blank">使用百度前必读</a>&nbsp;|&nbsp;<a href="https://wenku.baidu.com/portal/browse/help#help/24" class="Xieyi" target="_blank">文库协议</a>&nbsp;|&nbsp;<a href="https://jiaoyu.baidu.com/topic/bsplatform/brand_promotion" class="Xieyi" target="_blank">广告服务</a>&nbsp;|&nbsp;<a href="https://jiaoyu.baidu.com/topic/bsplatform/institutional_database" class="Xieyi" target="_blank">企业文库</a>&nbsp;|&nbsp;<a href="/portal/browse/websitemap" class="Xieyi" target="_blank">网站地图</a>
+</p>
+</div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd8bfb560f8d03bbefc9bdecafc4a4bf6' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=39124" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<div class="ad-taishan-bar">
+<a href="###" target="_blank" class="log-xsend" data-logxsend="[1, 100968, {index: 1}]"></a>
+<div class="ad-bar-close"></div>
+</div>
+<div class="ad-taishan">
+<a href="###" target="_blank" class="log-xsend" data-logxsend="[1, 100968, {index: 2}]"></a>
+</div>
+
+
+<script type="text/javascript" src="//passport.baidu.com/passApi/js/uni_armorwidget_wrapper.js"></script>
+<script type="text/javascript">var pageId='wenku-view';</script>
+
+
+
+
+
+
+
+<script>alog && alog('speed.set', 'drt', +new Date);</script>
+
+<script>
+    if (window.viewTime && window.viewTime.t) {
+        // body 渲染完成时间
+        window.viewTime.bt = new Date().getTime();
+    }
+    void function(a,b,c,d,e,f){function g(b){a.attachEvent?a.attachEvent("onload",b,!1):a.addEventListener&&a.addEventListener("load",b)}function h(a,c,d){d=d||15;var e=new Date;e.setTime((new Date).getTime()+1e3*d),b.cookie=a+"="+escape(c)+";path=/;expires="+e.toGMTString()}function i(a){var c=b.cookie.match(new RegExp("(^| )"+a+"=([^;]*)(;|$)"));return null!=c?unescape(c[2]):null}function j(){var a=i("PMS_JT");if(a){h("PMS_JT","",-1);try{a=a.match(/{["']s["']:(\d+),["']r["']:["']([\s\S]+)["']}/),a=a&&a[1]&&a[2]?{s:parseInt(a[1]),r:a[2]}:{}}catch(c){a={}}a.r&&b.referrer.replace(/#.*/,"")!=a.r||alog("speed.set","wt",a.s)}}if(a.alogObjectConfig){var k=a.alogObjectConfig.sample,l=a.alogObjectConfig.rand;d="https:"===a.location.protocol?"https://fex.bdstatic.com"+d:"http://fex.bdstatic.com"+d,k&&l&&l>k||(g(function(){alog("speed.set","lt",+new Date),e=b.createElement(c),e.async=!0,e.src=d+"?v="+~(new Date/864e5)+~(new Date/864e5),f=b.getElementsByTagName(c)[0],f.parentNode.insertBefore(e,f)}),j())}}(window,document,"script","/hunter/alog/dp.min.js");
+</script>
+</body><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/modjs/mod_2cc47b9.js"></script><script type="text/javascript">require.resourceMap({"res":{"wkview:widget\/ui\/file_downloader\/file_downloader_core.js":{"pkg":"wkview:p2"},"wkview:widget\/common_toc_toolbar\/config.js":{"pkg":"wkview:p14"},"wkview:widget\/common_item\/commonUtil\/commonUtil.js":{"pkg":"wkview:p1"},"wkview:widget\/common_toc\/common\/doc_tag\/index.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkview\/widget\/common_toc\/common\/doc_tag\/index_25e447d.js","deps":["wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkview:widget\/common_item\/commonUtil\/commonUtil.js","wkview:widget\/model\/vipData.js"]},"wkcommon:widget\/ui\/payCheck\/payCheck.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkcommon\/widget\/ui\/payCheck\/payCheck_61061dc.js","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/ui\/js_core\/_dialog\/_dialog.js","wkcommon:widget\/ui\/js_core\/login\/login.js"]},"wkcommon:widget\/sendToPhoneDialog\/sendToPhoneDialog.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkcommon\/widget\/sendToPhoneDialog\/sendToPhoneDialog_7f71de6.js","deps":["wkcommon:widget\/lib\/doT\/doT.min.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/lib\/fis\/data\/data.js"]},"wkcommon:widget\/dp_performance\/dp_First\/dp_First.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/js_core\/log\/log.js"]},"wkcommon:widget\/ui\/reader\/config\/config.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/js_core\/mvp\/template\/template.js"]},"wkcommon:widget\/ui\/reader\/model\/doc\/model.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/js_core\/mvp\/model\/model.js","wkcommon:widget\/ui\/js_core\/mvp\/template\/template.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js"]},"wkcommon:widget\/ui\/reader\/model\/model.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/reader\/model\/doc\/model.js"]},"wkcommon:widget\/ui\/reader\/view\/doc\/util.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/lib\/fis\/data\/data.js"]},"wkcommon:widget\/ui\/reader\/view\/doc\/render.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/reader\/view\/doc\/util.js"]},"wkcommon:widget\/ui\/reader\/view\/doc\/view.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/js_core\/mvp\/view\/view.js","wkcommon:widget\/ui\/reader\/view\/doc\/render.js"]},"wkcommon:widget\/ui\/reader\/view\/view.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/reader\/view\/doc\/view.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js"]},"wkcommon:widget\/ui\/reader\/strategy\/doc\/util.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js"]},"wkcommon:widget\/ui\/reader\/strategy\/doc\/strategy.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/js_core\/preload\/preload.js","wkcommon:widget\/ui\/reader\/strategy\/doc\/util.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/dp_performance\/dp_First\/dp_First.js"]},"wkcommon:widget\/ui\/reader\/strategy\/strategy.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/reader\/strategy\/doc\/strategy.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js"]},"wkcommon:widget\/ui\/reader\/presenter\/presenter.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/mvp\/presenter\/presenter.js","wkcommon:widget\/ui\/js_core\/mvp\/event\/event.js","wkcommon:widget\/ui\/reader\/config\/config.js","wkcommon:widget\/ui\/reader\/model\/model.js","wkcommon:widget\/ui\/reader\/view\/view.js","wkcommon:widget\/ui\/reader\/strategy\/strategy.js","wkcommon:widget\/ui\/reader_plugin\/reader_plugin.js"]},"wkcommon:widget\/ui\/reader\/reader.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/reader\/presenter\/presenter.js"]},"wkcommon:widget\/ui\/reader_plugin\/ZeroClipboard\/ZeroClipboard.js":{"pkg":"wkcommon:p10"},"wkcommon:widget\/ui\/reader_plugin\/qrcode\/qrcode.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/js_core\/qrcode\/qrcode.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/js_core\/log\/log.js"]},"wkcommon:widget\/ui\/reader_plugin\/translate.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js"]},"wkcommon:widget\/ui\/reader_plugin\/baike.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/mvp\/template\/template.js","wkcommon:widget\/ui\/js_core\/util\/util.js"]},"wkcommon:widget\/ui\/reader_plugin\/copylimit\/copylimit.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/_dialog\/_dialog.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/lib\/doT\/doT.min.js"]},"wkcommon:widget\/ui\/reader_plugin\/copy.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/reader_plugin\/ZeroClipboard\/ZeroClipboard.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/reader_plugin\/qrcode\/qrcode.js","wkcommon:widget\/ui\/reader_plugin\/translate.js","wkcommon:widget\/ui\/reader_plugin\/baike.js","wkcommon:widget\/sendToPhoneDialog\/sendToPhoneDialog.js","wkcommon:widget\/ui\/reader_plugin\/copylimit\/copylimit.js","wkcommon:widget\/ui\/js_core\/log\/log.js"]},"wkcommon:widget\/ui\/reader_plugin\/log.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/lib\/fis\/data\/data.js"]},"wkcommon:widget\/ui\/reader_plugin\/keyword\/match_card\/match_card.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/lib\/browser\/browser.js"]},"wkcommon:widget\/ui\/reader_plugin\/keyword\/search.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/ui\/lib\/array\/array.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/lib\/browser\/browser.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/match_card\/match_card.js"]},"wkcommon:widget\/ui\/reader_plugin\/keyword\/match_card\/getKeycard.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/reader_plugin\/keyword\/search.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/lib\/sio\/sio.js","wkcommon:widget\/ui\/lib\/object\/object.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/lib\/inCharset\/inCharset.js","wkcommon:widget\/ui\/lib\/browser\/browser.js","wkcommon:widget\/ui\/js_core\/toolkit\/toolkit.js","wkcommon:widget\/lib\/doT\/doT.min.js"]},"wkcommon:widget\/ui\/reader_plugin\/keyword\/main.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/reader_plugin\/keyword\/search.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/lib\/sio\/sio.js","wkcommon:widget\/ui\/lib\/object\/object.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/lib\/inCharset\/inCharset.js","wkcommon:widget\/ui\/lib\/browser\/browser.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/match_card\/getKeycard.js"]},"wkcommon:widget\/ui\/reader_plugin\/videokeyword\/search.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/ui\/lib\/array\/array.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/lib\/browser\/browser.js"]},"wkcommon:widget\/ui\/reader_plugin\/videokeyword\/video_card\/videocard.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/lib\/inCharset\/inCharset.js","wkcommon:widget\/ui\/lib\/browser\/browser.js","wkcommon:widget\/ui\/js_core\/toolkit\/toolkit.js","wkcommon:widget\/lib\/doT\/doT.min.js"]},"wkcommon:widget\/ui\/reader_plugin\/videokeyword\/main.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/ui\/reader_plugin\/videokeyword\/search.js","wkcommon:widget\/ui\/js_core\/util\/util.js","wkcommon:widget\/ui\/lib\/sio\/sio.js","wkcommon:widget\/ui\/lib\/object\/object.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/lib\/fis\/data\/data.js","wkcommon:widget\/ui\/lib\/inCharset\/inCharset.js","wkcommon:widget\/ui\/lib\/browser\/browser.js","wkcommon:widget\/ui\/reader_plugin\/videokeyword\/video_card\/videocard.js"]},"wkcommon:widget\/ui\/reader_plugin\/reader_plugin.js":{"pkg":"wkcommon:p10","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/reader_plugin\/copy.js","wkcommon:widget\/ui\/reader_plugin\/log.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/main.js","wkcommon:widget\/ui\/reader_plugin\/videokeyword\/main.js"]},"wkcommon:widget\/ui\/reader_plugin\/keyword\/idList.js":{"pkg":"wkcommon:p10"},"wkcommon:widget\/ui\/reader_plugin\/keyword\/wordList.js":{"pkg":"wkcommon:p10"},"wkcommon:widget\/ui\/reader_plugin\/search.js":{"pkg":"wkcommon:p10"},"wkview:widget\/common_toc\/reader_txt\/page_main\/main.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkview\/widget\/common_toc\/reader_txt\/page_main\/main_5f976a3.js","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkview:widget\/ui\/view\/reader_pace\/reader_pace.js","wkcommon:widget\/ui\/payCheck\/payCheck.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkview:widget\/ui\/view\/pay_org_vip\/pay_org_vip.js","wkview:widget\/ui\/view\/down_doc\/down_doc.js","wkcommon:widget\/ui\/reader_plugin\/copy.js","wkcommon:widget\/ui\/js_core\/login\/login.js"]},"wkcommon:widget\/ui\/lib\/lazyload\/lazyload.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkcommon\/widget\/ui\/lib\/lazyload\/lazyload_ff4c82f.js"},"wkcommon:widget\/ui\/lib\/BigPipe\/BigPipe.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkcommon\/widget\/ui\/lib\/BigPipe\/BigPipe_1626517.js","deps":["wkcommon:widget\/ui\/lib\/lazyload\/lazyload.js"]},"wkview:widget\/ad_xpageForm\/xpageForm.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkview\/widget\/ad_xpageForm\/xpageForm_5a549db.js","deps":["wkcommon:widget\/ui\/js_core\/xform\/xform.js","wkcommon:widget\/lib\/doT\/doT.min.js","wkcommon:widget\/vipNoAdDialog\/vipNoAdDialog.js","wkcommon:widget\/ui\/js_core\/log\/log.js"]},"wkview:widget\/commerce\/fengchao\/left.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkview\/widget\/commerce\/fengchao\/left_b1574a3.js","deps":["wkcommon:widget\/lib\/fis\/data\/data.js"]},"wkview:widget\/common_toc\/reader_txt\/page_body\/main.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkview\/widget\/common_toc\/reader_txt\/page_body\/main_bbc09bf.js","deps":["wkcommon:widget\/ui\/lib\/BigPipe\/BigPipe.js","wkview:widget\/crmAd\/crmAd3.js","wkview:widget\/fengchao_right\/fengchao_right.js","wkcommon:widget\/lib\/tangram\/base\/base.js","wkcommon:widget\/ui\/lib\/jquery\/jquery.js","wkview:widget\/view_recom_thirdad\/endPageGoldClueAd\/endPageGoldClueAd.js","wkview:widget\/crmAd\/zyAd.js","wkcommon:widget\/vipNoAdDialog\/vipNoAdDialog.js","wkview:widget\/crm_multi\/crm_multi.js","wkview:widget\/crmAd\/crmAd2.js","wkview:widget\/commerce\/fengchao\/modelAnimation.js","wkview:widget\/ad_xpageForm\/xpageForm.js","wkview:widget\/node_modules\/@baidu\/wenku-model-user\/index.js","wkcommon:widget\/ui\/js_core\/log\/log.js","wkview:widget\/commerce\/fengchao\/left.js","wkcommon:widget\/lib\/fis\/data\/data.js"]},"wkview:widget\/common_toc\/common\/main.js":{"url":"\/\/wkstatic.bdimg.com\/static\/wkview\/widget\/common_toc\/common\/main_3e09e8a.js","deps":["wkcommon:widget\/lib\/tangram\/base\/base.js","wkview:widget\/common_item\/cloudSync\/cloudSync.js","wkview:widget\/common_item\/todoAction\/todoAction.js","wkview:widget\/common_item\/someLog\/someLog.js"]}},"pkg":{"wkcommon:p10":{"url":"\/\/wkstatic.bdimg.com\/static\/wkcommon\/pkg\/pkg_wkcommon_htmlReader_e1acd39.js","has":["wkcommon:widget\/dp_performance\/dp_First\/dp_First.js","wkcommon:widget\/ui\/reader\/config\/config.js","wkcommon:widget\/ui\/reader\/model\/doc\/model.js","wkcommon:widget\/ui\/reader\/model\/model.js","wkcommon:widget\/ui\/reader\/view\/doc\/util.js","wkcommon:widget\/ui\/reader\/view\/doc\/render.js","wkcommon:widget\/ui\/reader\/view\/doc\/view.js","wkcommon:widget\/ui\/reader\/view\/view.js","wkcommon:widget\/ui\/reader\/strategy\/doc\/util.js","wkcommon:widget\/ui\/reader\/strategy\/doc\/strategy.js","wkcommon:widget\/ui\/reader\/strategy\/strategy.js","wkcommon:widget\/ui\/reader\/presenter\/presenter.js","wkcommon:widget\/ui\/reader\/reader.js","wkcommon:widget\/ui\/reader_plugin\/ZeroClipboard\/ZeroClipboard.js","wkcommon:widget\/ui\/reader_plugin\/qrcode\/qrcode.js","wkcommon:widget\/ui\/reader_plugin\/translate.js","wkcommon:widget\/ui\/reader_plugin\/baike.js","wkcommon:widget\/ui\/reader_plugin\/copylimit\/copylimit.js","wkcommon:widget\/ui\/reader_plugin\/copy.js","wkcommon:widget\/ui\/reader_plugin\/log.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/match_card\/match_card.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/search.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/match_card\/getKeycard.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/main.js","wkcommon:widget\/ui\/reader_plugin\/videokeyword\/search.js","wkcommon:widget\/ui\/reader_plugin\/videokeyword\/video_card\/videocard.js","wkcommon:widget\/ui\/reader_plugin\/videokeyword\/main.js","wkcommon:widget\/ui\/reader_plugin\/reader_plugin.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/idList.js","wkcommon:widget\/ui\/reader_plugin\/keyword\/wordList.js","wkcommon:widget\/ui\/reader_plugin\/search.js"]}}});</script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/ui/flashFactory/flashFactory_7ca31b3.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/ui/lib/jquery_xdomainrequest/xdomainrequest_adc6083.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/header/search_box/sug_6c7bcef.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/feedback/feedback_345ce50.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/node_modules/@baidu/wenku-model-user/index_c5651db.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/vipNoAdDialog/vipNoAdDialog_a97940e.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/pkg/pkg_wkcommon_base_abf36a5.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/ui/lib/jquery_extend/jquery_extend_a6f0b73.js"></script><script type="text/javascript"
+src="//wkstatic.bdimg.com/static/wkcommon/pkg/pkg_wkcommon_lib_ebe7a02.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/sessionX/sessionX_bf051b5.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/header/category/category_9a053b6.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/raw_income/raw_income_ea0cdb3.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/raw_income/native_income/native_income_f057f15.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/pkg/viewcommon_1d2cc4f.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/pkg/viewcommon2_1c647c8.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/format_convert/download_handler/download_handler_b86683a.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/format_convert/dialog_down_doc/format_convert_94420d5.js"></script><script
+type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/node_modules/@baidu/wenku-model-user/index_dd34b2c.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/node_modules/davidshimjs-qrcodejs/qrcode_6606823.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/node_modules/@baidu/el-visible/index_08feaab.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/ui/detectImgBlock/detectImgBlock_b16dce0.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/commerce/pinzhuan/model_c2808d9.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/commerce/fengchao/modelAnimation_c657080.js"></script><script type="text/javascript"
+src="//wkstatic.bdimg.com/static/wkcommon/widget/ui/lib/inCharset/inCharset_0ee79e0.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/commerce/fengchao/model_e9ee172.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/ui/html_view/widget_d6e8ec2.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/commerce/fengchao/modelStru_9d47c43.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/ui/lib/store/store_32a0d1e.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/pkg/toctoolbar_28a4090.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/node_modules/@baidu/wenku-pc-components/dist/index_c42c820.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/doc_dw_wangpan_main/doc_dw_wangpan_main_7690bd7.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/doc_dw_wangpan_main/doc_dw_wangpan_pro_6bbada5.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/top_ads_banner/top_ads_banner_2aa4a94.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/pkg/viewtxt_689273c.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/tb/ipDialog/ipDialog_9dfb11e.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkcommon/widget/study/studyPopup/studyPopup_5508833.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/widget/common_toc/common/studyPopup/studyPopup_1eceeab.js"></script><script type="text/javascript" src="//wkstatic.bdimg.com/static/wkview/third_party/fengchao_plugin/parallax-scrolling-webku.min-0_0754c4e.js"></script><script type="text/javascript">
+!function(){            //service worker相关统计
+            require.async(['wkcommon:widget/ui/js_core/log/log.js'],function(Log){
+                try {
+                    function testMime (key, value) {
+                        var mimeTypes = navigator.mimeTypes;
+                        for (var i in mimeTypes) {
+                        if (mimeTypes[i][key] === value) {
+                            return true;
+                        }
+                        }
+                        return false;
+                    }
+                    if (navigator.userAgent.indexOf('Chrome') !== -1) {
+                        Log.xsend(1, 101033);
+                        if (navigator.mimeTypes) {
+                            if (testMime('type', 'application/vnd.chromium.remoting-viewer')) {
+                                Log.xsend(1, 101032);
+                            }
+                        }
+                    }
+                    if ('serviceWorker' in navigator && 'PushManager' in window) {
+                        Log.xsend(1, 101034);
+                    }
+                } catch (e) {
+
+                }
+            });
+        }();
+!function(){            require.async('wkview:widget/ui/nsTypeMap/nsTypeMap.js');
+        }();
+!function(){    var $ = require('wkcommon:widget/ui/lib/jquery/jquery.js');
+    var sessionX = require('wkcommon:widget/sessionX/sessionX.js');
+    var sessionXMgr = sessionX.sessionXMgr;
+    var urlParam = sessionXMgr.getUrlParam();
+    window.wkCommonLogParam = typeof window.wkCommonLogParam === 'object'
+        ? window.wkCommonLogParam : {};
+    $.extend(true, window.wkCommonLogParam, {
+        '_sessionx_url_param': JSON.stringify(urlParam)
+    });
+}();
+!function(){    require.async(['wkcommon:widget/lib/fis/data/data.js', 'wkcommon:widget/ui/lib/jquery/jquery.js', 'wkcommon:widget/user_bar/user_bar.js'], function (Data, $) {
+        Data.set('isPgcPop', '');
+        Data.set('smallFlow',true);
+        $( '#reg' ).attr( 'href', 'https://passport.baidu.com/v2/?reg&tpl=do&u=' + encodeURIComponent( location.href ) );
+    });
+}();
+!function(){    window.escapeSymbol=function(e){return String(e).replace(/[#%&+=\/\\\ \u3000\f\r\n\t]/g,function(e){return"%"+(256+e.charCodeAt()).toString(16).substring(1).toUpperCase()})},window.setHeadUrl=function(e){if(document.getElementById("kw").value){var t=new RegExp("[?]");if(!t.test(e.href)){var r=e.href;e.href=e.getAttribute("data-href"),e.setAttribute("data-href",r)}e.href=e.href.replace("?newmap=1&ie=utf-8&s=s%26wd%3D","?newmap=1&ie=utf-8&s=s&wd="),e.href=e.href.replace(new RegExp("("+e.getAttribute("wdfield")+"=)[^&]*"),"$1"+encodeURIComponent(document.getElementById("kw").value)).replace("?newmap=1&ie=utf-8&s=s&wd=","?newmap=1&ie=utf-8&s=s%26wd%3D"),e.href=e.href.replace(new RegExp("("+e.getAttribute("wdfield")+"=)[^&]*"),"$1"+window.escapeSymbol(document.getElementById("kw").value))
+}else{var t=new RegExp("[?]");if(t.test(e.href)){var r=e.href;e.href=e.getAttribute("data-href"),e.setAttribute("data-href",r)}}};;
+    }();
+!function(){    require.async(['wkcommon:widget/lib/tangram/base/base.js', 'wkcommon:widget/lib/fis/data/data.js', 'wkcommon:widget/header/search_box/search_box.js'], function(T, Data){
+
+    var hotword = T.json.parse('[{\x22content\x22:\x22ppt\\u6a21\\u7248\x22,\x22isnew\x22:\x221\x22},{\x22content\x22:\x22\\u5c0f\\u5b66\\u4f5c\\u6587\x22,\x22isnew\x22:\x221\x22},{\x22content\x22:\x22\\u5c0f\\u5b66\\u6570\\u5b66\\u516c\\u5f0f\x22,\x22isnew\x22:\x220\x22}]');
+
+    Data.set('hotword', hotword);
+    });
+}();
+!function(){    require.async(['wkcommon:widget/header/category/category.js'], function (Category) {
+        new Category();
+    });
+}();
+!function(){    require.async(["wkcommon:widget/lib/tangram/base/base.js", "wkcommon:widget/ui/js_core/login/login.js", "wkcommon:widget/ui/lib/jquery/jquery.js", "wkcommon:widget/ui/js_core/log/log.js"],function(e,n,i,o){e.dom.ready(function(){var t=(e.event,e.g);o.xsend(1,100753);var a=document.location.pathname,r={"nav-index":/^\/$/i,"nav-edu":/^\/edu/i,"nav-org":/^\/org\/index/i},u=(n.login,100);for(var c in r)if(r.hasOwnProperty(c)){var s=r[c];if(s.test&&s.test(a)){var d=t(c);d&&e.addClass(d,"current")}}!function(){var n=document.location.pathname,i=(e.dom.g("zone-menu"),e.dom.q("ui-sub-nav","hd","div")[0]),o=[/^\/edu\/index$/i,/^\/ppt\/index$/i,/^\/life\/index$/i,/^\/pro\/index$/i,/^\/form\/index$/i,/^\/topic$/i],t=function(){for(var e={isZonePage:!1,zoneType:""},i=0,t=o.length;t>i;i++){var a=o[i];
+a.test(n)&&(e.isZonePage=!0,e.zoneType=n)}return e}();if(t.isZonePage&&i)for(var a=i.getElementsByTagName("a"),r=0,u=a.length;u>r;r++){var c=a[r],s=c.getAttribute("href");(t.zoneType===s||document.location.href===s)&&e.dom.addClass(c.parentNode,"current")}}(),function(){function e(){a.hide(),t.removeClass("current")}function n(){a.show(),t.addClass("current")}var o="";if(!o){var t=i("#zone-menu"),a=i("#wk-all-cate"),r=null;t.mouseenter(function(){r&&clearTimeout(r),r=setTimeout(function(){n()
+},u)}).mouseleave(function(n){r&&clearTimeout(r),n.relatedTarget!=a[0]&&e()}),a.mouseenter(function(){n()}).mouseleave(function(){e()})}}(),function(n){var i=null;n("ul.main-nav li").on("mouseenter",function(){var e=n(this),o=e.find(".drop-sub-nav");o.length&&o.find(">a").length&&(i=setTimeout(function(){o.show(),e.addClass("current")},u))}),e.cookie.get("__join_jiaoyu_vip")?n(".havenew-ic").hide():(n(".havenew-ic").show(),n(".jiaoyu-vip").on("click",function(){n(".havenew-ic").hide(),e.cookie.set("__join_jiaoyu_vip",1,{path:"/"})
+})),n("ul.main-nav li").on("mouseleave",function(){i&&clearTimeout(i),n(this).find(".drop-sub-nav").hide(),n(this).removeClass("current")})}(i)})});;
+}();
+!function(){    require.async(['wkcommon:widget/lib/tangram/base/base.js', 'wkcommon:widget/ui/js_core/login/login.js', 'wkcommon:widget/ui/js_core/log/log.js', 'wkcommon:widget/ui/lib/store/store.js', 'wkcommon:widget/lib/fis/data/data.js', 'wkcommon:widget/ui/lib/jquery/jquery.js'], function (T, Login, log, Store, Data, $) {
+        log.xsend(1,100601);
+        var login = Login.login;
+        var islogin = $('.doc-upload').data('login');
+        var $uploadWrap = $('.doc-upload').find('.new-upload-btns');
+
+        if (islogin == true) {
+            $('.btn-upload').attr('href', '/new?fr=view');
+            $('.btn-upload').attr('target', '_blank');
+        }
+        T.event.on('uploadDoc-0', 'click', function (e) {
+            login.verlogin(function () {}, null, null, {
+                actionName: 'upload',
+                fromMod: 'upload'
+            });
+        });
+
+        //上传按钮
+        $('.btn-upload-new').hover(function () {
+            $uploadWrap.show();
+        }, function () {
+            $uploadWrap.hide();
+        });
+        $uploadWrap.hover(function () {
+            $uploadWrap.show();
+        }, function () {
+            $uploadWrap.hide();
+        });
+
+        $uploadWrap.on('click', 'a', function (event) {
+            login.verlogin(function () {}, null, null, {
+                actionName: 'upload',
+                fromMod: 'upload'
+            });
+        });
+
+        $('.btn-upload-new').on('click', function () {
+            var WkInfo = Data.get('WkInfo') || {};
+            if (~~WkInfo.DocInfo.is_exam_link) {
+                log.xsend(1, 100718);
+            }
+        });
+    });
+}();
+!function(){    require.async(['wkcommon:widget/ui/js_core/log/log.js'], function (log) {
+        log.xsend(1, 100621);
+    });
+}();
+!function(){    require.async(['wkview:widget/common_item/serviceEntry/index.js'], function(Index) {
+        this.index = new Index({
+            docTitle: '2015春华师《应用统计学A》在线作业答案',
+            cid1: '1',
+            cid2: '10',
+            cid3: '118'
+        });
+    });
+}();
+!function(){    require.async('wkview:widget/top_ads_banner/top_ads_banner.js',
+        function (topAdsBanner) {
+            new topAdsBanner({
+                crumbs: '教育专区,高等教育,教育学'
+            });
+        }
+    );
+}();
+!function(){                    var tagArr = [];
+                require.async(['wkview:widget/doc_header_new/index.js'], function (Index) {
+                this.index = new Index({
+                        id: '2',
+                        veritype: '',
+                        oid: '',
+                        hasTag: !!'',
+                        tagArr: tagArr
+                });
+        });
+}();
+!function(){    require.async(['wkview:widget/common_toc/common/doc_tag/index.js'], function (DocTag) {
+        this.docTag = new DocTag();
+    });
+}();
+!function(){    require.async(['wkcommon:widget/ui/lib/jquery/jquery.js', 'wkcommon:widget/vipNoAdDialog/vipNoAdDialog.js'], function($, NoAdDialog) {
+        if ($('.ad-logo').length > 0) {
+            $('.ad-logo').each(function () {
+                $(this).click(function () {
+                    new NoAdDialog();
+                });
+            });
+        }
+    })
+}();
+!function(){        require.async(['wkview:widget/common_toc_reader/common/doc_banner/compAsync/index.js'], function (CompAsync) {
+            new CompAsync();
+        });
+
+    }();
+!function(){    require.async(['wkcommon:widget/ui/lib/jquery/jquery.js', 'wkcommon:widget/vipNoAdDialog/vipNoAdDialog.js'], function($, NoAdDialog) {
+        if ($('#html-reader-AD-3t4').length > 0) {
+            $('#html-reader-AD-3t4').on('click', '.ad-logo', function () {
+                new NoAdDialog();
+            });
+        }
+    })
+}();
+!function(){    require.async(['wkview:widget/common_toc_reader/common/doc_banner/index.js', 'wkview:widget/common_toc_reader/common/ad/ad.js'], function (DB, ad) {
+        this.db = new DB({
+            id: '4'
+        });
+
+        var isJiaoyuVip = parseInt('0', 10);
+        var jobHunt = {
+            isJobHunt: parseInt('', 10),
+            buttonTips: '',
+            url: '',
+            statisticsClickId: '',
+            pageTips: '',
+            statisticsDisplayId: '',
+            keyword: ''
+        };
+        if ('txt' === 'ppt') {
+            jobHunt = false;
+        }
+        var docInfo = {
+            docId: 'cbb4af8b783e0912a3162a89',
+            title: '2015春华师《应用统计学A》在线作业答案'
+        };
+        ad.init(isJiaoyuVip, jobHunt, docInfo);
+    })
+}();
+!function(){    require.async(['wkview:widget/common_toc_reader/common/doc_bottom/compAsync/index.js'], function (CompAsync) {
+        new CompAsync();
+    });
+    require.async(['wkview:widget/common_toc_reader/common/doc_bottom/doc_bottom.js'], function (DB) {
+        this.db = new DB();
+    })
+}();
+!function(){    /**
+ * @file 尾部内联js
+ * @author wutao06
+ */
+
+T.lang.eventCenter.addEventListener('pack.button.hide', function () {
+            $('.pack-pay').css('display', 'inline-block');
+    });
+
+var Reader = require('wkview:widget/common_toc_reader/reader_txt/index.js');
+new Reader({
+    doc_id: 'cbb4af8b783e0912a3162a89',
+    container: $('.reader-container .reader-container-inner .bd'),
+    el: T.dom.query('.reader-container')[0],
+    totalPageNum: parseInt('4', 10),
+    pageCount: parseInt('4', 10),
+    toPage: parseInt('1', 10),
+    shareElId: 'shareMore-3'
+});
+require.async(['wkcommon:widget/lib/tangram/base/base.js', 'wkview:widget/ui/view/doc_share/doc_share.js', 'wkview:widget/ui/view/down_wangpan/down_doc.js'], function (T, docShare, Wangpan) {
+    var wangpan = Wangpan.downDocCreate();
+    T.lang.eventCenter.addEventListener('Reader.zoomChange', function (e) {
+        var docBodyEl = T.dom.query('#bd .body')[0];
+        var bdWrap = T.dom.query('#bd .bd-wrap')[0];
+        var crubmsWrap = T.dom.query('#bd .crubms-wrap');
+        if (crubmsWrap.length > 1) {
+            crubmsWrap = crubmsWrap[0];
+            crubmsWrap.style.width = docBodyEl.offsetWidth + 'px';
+        }
+        bdWrap.style.minWidth = docBodyEl.offsetWidth + 'px';
+    });
+    T.lang.eventCenter.addEventListener('wangpan.doc', function (e, data) {
+        data = data || {};
+        var from = data.from || false;
+        if (from === 'payDialog') {
+            wangpan.getFile();
+        }
+        else {
+            wangpan.start();
+        }
+    });
+
+    // 分享
+    var share = docShare.shareToCreate({
+        el: T.dom.q('reader-tools-share')[0],
+        view: 'viewReader-3',
+        copy: 'copyCode-3',
+        panel: 'panel-3',
+        closePanel: 'closePanel-3',
+        toggleSize: ['normalSize-3', 'bigSize-3'],
+        codeText: 'readerCode-3',
+        copyResult: 'copyResult-3'
+    });
+    // 显示更多分享
+    share.show();
+
+});;
+}();
+!function(){    require.async(['wkview:widget/stru_recom/index.js'], function (Recom) {
+        this.recom = new Recom({
+                        readerType: '',
+            recommendType: '',
+            uid: '5',
+            docId: 'cbb4af8b783e0912a3162a89',
+            refer_query: ''
+        });
+    });
+}();
+!function(){    require.async('wkview:widget/comment/comment_default/comment_default.js');
+}();
+!function(){    require.async(['wkview:widget/common_toc/reader_txt/page_main/main.js'], function (Main) {
+        this.main = new Main({
+            docId: 'cbb4af8b783e0912a3162a89',
+            bPage: +'0',
+            bOffset: +'0',
+            rPage: +'0',
+            rOffset: +'0',
+            sendCondition: ('0' == '1'),
+            isOrgvipBuyMember: +'',
+            needShowPay: +'',
+            isLogin: +('0'),
+            copyable: +('1')
+        });
+    });
+}();
+!function(){    require.async(["wkcommon:widget/360tip/360tip.js"],function(e){var r=e.showTopTip,t={referer:""};new r(t).create()});;
+}();
+!function(){    var bds_config = {
+        bdPic: 'https://edu-wenku.bdimg.com/icms_transform/img/iknow/wenku/erweima2001.jpg',
+        snsKey: {
+            tsina: 2273341579,
+            tqq: 801199444
+        },
+        bdText: '我正在@百度文库 阅读【2015春华师《应用统计学A》在线作业答案】这篇文章，推荐给大家！用文库客户端可以免积分下载该文档，客户
+端下载地址：http://'
+            + location.host
+            + '/apps?fr=2001 想立即阅读该文档点这里：'
+    };
+    document.getElementById('bdshell_js').src = '//edu-wenku.bdimg.com/v1/pc/bdshare/static/api/js/share.js?cdnversion='
+        + new Date().getHours();
+    // 重写qzone分享事件
+    require.async(['wkcommon:widget/lib/tangram/base/base.js'], function (T) {
+        // 重写qzone分享事件
+        var qzones = T.q('sns_qzone');
+        if (qzones) {
+            T.array.each(qzones, function (item, i) {
+                T.event.on(item, 'mouseover', function () {
+                    T.ajax.post(
+                        '/user/interface/qqShareOption',
+                        'app=bind_status',
+                        function (xhr, responseText) {
+                            try {
+                                var errno = eval('(' + responseText + ')');
+                                // 如果已绑定
+                                if (errno.list.join(',').indexOf('qq') > -1) {
+                                    if (item.innerHTML.indexOf('分享到QQ空间') < 0) {
+                                        item.innerHTML = '';
+                                    }
+                                    qzones[i].onclick = function () {
+                                        window.open(
+                                            'http://'
+                                                + location.host
+                                                + '/user/browse/qqShare?url='
+                                                + T.string.encodeHTML(location.href),
+                                            'blank'
+                                        );
+                                    }
+                                }
+                            }
+                            catch (ex) {}
+                        }
+                    );
+                });
+            });
+        }
+    });
+}();
+!function(){    require.async(['wkcommon:widget/ui/lib/jquery/jquery.js', 'wkview:widget/fix_searchbar/fix_searchbar.js', 'wkcommon:widget/lib/fis/data/data.js'], function ($, FSB, Data) {
+        $(function () {
+            new FSB.fixSearchBar({
+                evaluateBoxId: '#doc-evaluate-mod',
+                evaluateTagId: '#doc-main',
+                evaluatePreCl: '.reder-share-model'
+            });
+            $('.top-down-load-container').addClass('view_change_test');
+        } );
+    } );
+}();
+!function(){    require.async(['wkview:widget/ad_taishan/ad_taishan.js'], function (adTaishan) {
+        T.lang.eventCenter.addEventListener('ReaderCreate.after', function () {
+            adTaishan.init();
+        });
+    });
+}();
+!function(){    require.async(['wkview:widget/common_toc/reader_txt/page_body/main.js'], function (PageBody) {
+        this.pageBody = new PageBody({
+            docId: 'cbb4af8b783e0912a3162a89',
+            flag: +'1',
+            needShowAd: +'1'
+        });
+    });
+}();
+!function(){    require.async(['wkcommon:widget/ui/js_core/log/log.js'], function (log) {
+        log.xsend(1, 100737, {
+            sf_svip: '2111' || 0,
+            reader_type: 'reader_txt'
+        });
+        var professionalDoc = '' || 0;
+        if (professionalDoc) {
+            log.xsend(1, 101653);
+        }
+        var $isPartnerDoc = '' || 0;
+        var $isPaied = '' || 0;
+        var $isPickDoc = '0' || 0;
+        if (+$isPartnerDoc) {
+            log.xsend(1, 101792, {
+                index: 10
+            });
+            if (+$isPaied) {
+                log.xsend(1, 101792, {
+                    index: 11
+                });
+            }
+        }
+        if (+$isPickDoc) {
+            log.xsend(1, 101835, {
+                index: 1
+            });
+        }
+    });
+}();
+!function(){    require.async(['wkview:widget/common_toc/common/studyPopup/studyPopup.js'], function (studyPopup) {
+        studyPopup.init({
+                'orgid': '',
+                'orgname': '',
+                'shouldpop': +'',
+                'docid': 'cbb4af8b783e0912a3162a89',
+                'pagetype': 'view',
+            'xpageSwitch': +'1'
+        });
+    });
+}();
+!function(){        require.async(['wkview:widget/common_toc/common/main.js'], function () {})
+    }();
+</script></html>
+
+cbb4af8b783e0912a3162a89
+txt
+2015春华师《应用统计学A》在线作业答案
+已保存为:2015春华师《应用统计学A》在线作业答案.txt
