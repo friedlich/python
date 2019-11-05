@@ -1,0 +1,45 @@
+[INFO  - 2019-08-29T12:00:11.839Z] GhostDriver - Main - running on port 54071
+[INFO  - 2019-08-29T12:00:15.458Z] Session [900856c0-ca54-11e9-96a9-c7946b46a301] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":false,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2019-08-29T12:00:15.458Z] Session [900856c0-ca54-11e9-96a9-c7946b46a301] - page.customHeaders:  - {}
+[INFO  - 2019-08-29T12:00:15.458Z] Session [900856c0-ca54-11e9-96a9-c7946b46a301] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2019-08-29T12:00:15.458Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 900856c0-ca54-11e9-96a9-c7946b46a301
+[ERROR - 2019-08-29T12:00:19.692Z] Session [900856c0-ca54-11e9-96a9-c7946b46a301] - page.onError - msg: TypeError: undefined is not a constructor (evaluating 'b.cfg.elUserName.focus()')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-08-29T12:00:19.693Z] Session [900856c0-ca54-11e9-96a9-c7946b46a301] - page.onError - stack:
+  (anonymous function) (https://g.alicdn.com/vip/login/0.5.65/js/login/nlogin.js?t=20151220:1)
+  simpleNotify (https://g.alicdn.com/kissy/k/1.4.4/event/base-min.js:10)
+  notifyInternal (https://g.alicdn.com/kissy/k/1.4.4/event/dom/base-min.js:8)
+  notify (https://g.alicdn.com/kissy/k/1.4.4/event/base-min.js:11)
+  notify (https://g.alicdn.com/kissy/k/1.4.4/event/dom/base-min.js:17)
+  handle (https://g.alicdn.com/kissy/k/1.4.4/event/dom/base-min.js:22)
+  dispatchEvent (:0)
+  U (:119)
+  $ (:108)
+  $ (:101)
+  gh (:141)
+  sh (:152)
+  (anonymous function) (:152)
+  (anonymous function) (:152)
+  (anonymous function) (:153)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-08-29T12:00:22.088Z] Session [900856c0-ca54-11e9-96a9-c7946b46a301] - page.onError - msg: TypeError: undefined is not an object (evaluating 'a.arguments[0]')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-08-29T12:00:22.088Z] Session [900856c0-ca54-11e9-96a9-c7946b46a301] - page.onError - stack:
+  (anonymous function) (https://js.t.sinajs.cn/t5/register/js/page/login/remote.js?version=307744aa77dd5677:1)
+  (anonymous function) (https://js.t.sinajs.cn/t5/register/js/page/login/remote.js?version=307744aa77dd5677:1)
+  checkUsername (https://js.t.sinajs.cn/t5/register/js/page/login/remote.js?version=307744aa77dd5677:32)
+  blur (:0)
+  lg (:122)
+  mg (:123)
+  (anonymous function) (:125)
+  t (:7)
+  $ (:125)
+  yg (:132)
+  (anonymous function) (:132)
+  (anonymous function) (:132)
+  (anonymous function) (:133)
+
+  phantomjs://platform/console++.js:263 in error

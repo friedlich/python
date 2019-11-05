@@ -1,0 +1,15 @@
+1. uint8是无符号八位整型，表示范围是[0, 255]的整数
+
+2. Python处理图像个人主要推荐下面两种
+
+a) PIL (pip install pillow)，这个比较原生，并且处理过程中一直是uint8
+from PIL import Image
+import numpy as np
+im = Image.open('test.jpg') # 从读入就是uint8
+npim = np.array(im) # 转换成numpy array处理
+
+b) cv2 (pip install opencv-python)，opencv的python实现
+import cv2
+im = cv2.imread('test.jpg') # 读入默认是uint8格式的numpy array
+一般情况直接用uint8即可，若是有需求（如神经网络等），可以转换成浮点数等形式。如果需要转回PIL的图像对象，那就必须是uint8的格式。
+如果一直用cv2的话，也可以直接保存浮点数形式的（注意是0~255，不是0~1）。

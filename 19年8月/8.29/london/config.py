@@ -1,0 +1,8 @@
+MONGO_URL='localhost'
+MONGO_DB='Newyork'
+MONGO_TABLE='Newyork'
+
+GROUP_START=1
+GROUP_END=2
+
+KEYWORD = '纽约'

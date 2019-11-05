@@ -1,0 +1,2 @@
+anaconda search -t conda tensorflow
+anaconda show + 支持win64的tensor版本

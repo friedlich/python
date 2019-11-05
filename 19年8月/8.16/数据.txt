@@ -1,0 +1,19 @@
+Cost after epoch 0: 1.855702
+Cost after epoch 100: 1.016458
+Cost after epoch 200: 0.733102
+Cost after epoch 300: 0.572938
+Cost after epoch 400: 0.468799
+Cost after epoch 500: 0.380979
+Cost after epoch 600: 0.313819
+Cost after epoch 700: 0.254258
+Cost after epoch 800: 0.203795
+Cost after epoch 900: 0.166410
+Cost after epoch 1000: 0.141497
+Cost after epoch 1100: 0.107579
+Cost after epoch 1200: 0.086229
+Cost after epoch 1300: 0.059415
+Cost after epoch 1400: 0.052237
+
+Parameters have been trained!
+Train Accuracy: 0.9990741
+Test Accuracy: 0.71666664
